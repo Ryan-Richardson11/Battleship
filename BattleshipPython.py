@@ -3,6 +3,7 @@ import random
 grid_size = 10
 grid = [[""]*grid_size for i in range(grid_size)]
 num_of_ships = 5
+max_guesses = 25
 column_list = "    0   1   2   3   4   5   6   7   8   9"
 
 def drawBoard(myBoard):
@@ -50,6 +51,7 @@ def isGameOver(myBoard):
 
 def main(myBoard):
     setupBoard(myBoard)
+    guesses = 0
     while not isGameOver(myBoard):
         drawBoard(myBoard)
         try:
@@ -64,6 +66,12 @@ def main(myBoard):
             continue
 
         hitOrMiss(myBoard, row, col)
+        guesses += 1
+
+        if guesses >= max_guesses:
+            print(f"Too many guesses! You lose. The correct answer was:")
+            drawBoard(myBoard)
+            break
 
     print("GAME OVER!")
 
