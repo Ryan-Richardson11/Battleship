@@ -5,7 +5,6 @@ grid = [[""]*grid_size for i in range(grid_size)]
 num_of_ships = 5
 column_list = "    0   1   2   3   4   5   6   7   8   9"
 
-
 def drawBoard(myBoard):
     print(column_list)
     print("  +---+---+---+---+---+---+---+---+---+---+")
@@ -13,10 +12,12 @@ def drawBoard(myBoard):
     for i in range(grid_size):
         print(f"{i} |", end="")
         for j in range(grid_size):
-            print(f" {myBoard[i][j]} |", end="")
+            if myBoard[i][j] == " " or myBoard[i][j] == "S":
+                print(" . |", end="")
+            else:
+                print(f" {myBoard[i][j]} |", end="")
         print()
         print("  +---+---+---+---+---+---+---+---+---+---+")
-
 
 def setupBoard(myBoard):
     random_ships = 0
@@ -32,7 +33,6 @@ def setupBoard(myBoard):
             myBoard[randomRow][randomCol] = "S"
             random_ships += 1
 
-
 def hitOrMiss(myBoard, row, col):
     if myBoard[row][col] == "S":
         print("Hit!")
@@ -41,14 +41,12 @@ def hitOrMiss(myBoard, row, col):
         print("Miss!")
         myBoard[row][col] = "O"
 
-
 def isGameOver(myBoard):
     for i in range(grid_size):
         for j in range(grid_size):
             if myBoard[i][j] == "S":
                 return False
     return True
-
 
 def main(myBoard):
     setupBoard(myBoard)

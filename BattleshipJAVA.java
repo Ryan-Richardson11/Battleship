@@ -22,7 +22,11 @@ public class BattleshipJAVA {
         for (int i = 0; i < gridSize; i++) {
             System.out.print(i + " |");
             for (int j = 0; j < gridSize; j++) {
-                System.out.print(" " + grid[i][j] + " |");
+                if (grid[i][j].equals(" ") || grid[i][j].equals("S")) {
+                    System.out.print(" . |");
+                } else {
+                    System.out.print(" " + grid[i][j] + " |");
+                }
             }
             System.out.println();
             System.out.println("  +---+---+---+---+---+---+---+---+---+---+");
